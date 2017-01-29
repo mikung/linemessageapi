@@ -5,7 +5,7 @@
  * Date: 27/01/2560
  * Time: 00:58
  */
-/*$access_token = 'DqC0E6bwB9GJjUsZdCdyhtC1b6KXlp/DXoBnzPbt1/v+z0p0FCzHk5XAbO9nm2HQL8AoawkXmbJmMabvXfKrdJeueUzpp27IKe8kDox3Y4U2hjOjsM2l32hIc47h7TrPHrhtfeRQyXLwALD3yP1EJAdB04t89/1O/w1cDnyilFU=';
+$access_token = 'DqC0E6bwB9GJjUsZdCdyhtC1b6KXlp/DXoBnzPbt1/v+z0p0FCzHk5XAbO9nm2HQL8AoawkXmbJmMabvXfKrdJeueUzpp27IKe8kDox3Y4U2hjOjsM2l32hIc47h7TrPHrhtfeRQyXLwALD3yP1EJAdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -24,9 +24,12 @@ if (!is_null($events['events'])) {
             $replyToken = $event['replyToken'];
 
             // Build message to reply back
+            if($text == 'mikung'){
+                $data = 'mikung555';
+            }
             $messages = [
                 'type' => 'text',
-                'text' => $text
+                'text' => $data
             ];
 
             // Make a POST Request to Messaging API to reply to sender
@@ -51,20 +54,5 @@ if (!is_null($events['events'])) {
         }
     }
 }
-echo "OK";*/
-
-use LINE\LINEBot\KitchenSink\Dependency;
-use LINE\LINEBot\KitchenSink\Route;
-use LINE\LINEBot\KitchenSink\Setting;
-
-require_once __DIR__ . 'vendor/autoload.php';
-
-$setting = Setting::getSetting();
-$app = new \Slim\App($setting);
-
-(new Route())->register($app);
-(new Dependency())->register($app);
-
-$app->run();
-
+echo "OK";
 ?>
